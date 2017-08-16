@@ -76,7 +76,7 @@ module.exports = (addme,author,add,message)=>{
 
                        			else{
                        				if(Typist.findOne({typistId:typist.typistId}).roleId != typist.roleId){
-                                removeRole(Typist.findOne({typistId:typist.typistId}).roleId)
+                                member.removeRole(Typist.findOne({typistId:typist.typistId}).roleId)
                        					message.reply("you improved")
                        				}
                        				else{
