@@ -67,7 +67,7 @@ module.exports = (addme,author,add,message)=>{
                        			member.addRole(typist.roleId)
 
 
-                       			if(true){
+                       			if(add){
                        			typist.save(function (err, data) {
 									  if (err) return console.error(err);
 									  message.channel.send("it worked")
@@ -76,6 +76,7 @@ module.exports = (addme,author,add,message)=>{
 
                        			else{
                        				if(Typist.findOne({typistId:typist.typistId}).roleId != typist.roleId){
+                                removeRole(Typist.findOne({typistId:typist.typistId}).roleId)
                        					message.reply("you improved")
                        				}
                        				else{
