@@ -26,6 +26,8 @@ module.exports = (addme,author,add,message)=>{
   const member = message.guild.members.get(author)
   let arrOfAddMe = addme.split(" ")
   let username = arrOfAddMe[1]
+  let speed = 0
+  if(!add) username = Typist.find({typistId: author}).typeracer
   
   if(Typist.find({typistId: author}).length !==0) return message.reply("You already made an account")
   if(Typist.find({typeracer: username}).length !==0) return message.reply("That useranme is already used")
@@ -52,7 +54,6 @@ module.exports = (addme,author,add,message)=>{
                        .then(res => res.json())
                        .then(data=>{
 
-                       		let speed = 0
                        		if(data.account.wpm_bestlast10!=0) speed = Math.floor(data.account.wpm_bestlast10)
                        			else speed = Math.floor(data.account.wpm_last10)
                        			let rol =	roles.filter(rolespd=> rolespd.spdMin<=speed&&rolespd.spdMx>=speed)
